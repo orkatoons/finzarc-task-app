@@ -1,0 +1,28 @@
+{
+  "ayush": {
+    "password": "abc123",
+    "email": "ayush@email.com",
+    "tasks": {
+      "task1": {
+        "title": "Buy groceries",
+        "description": "Get milk and eggs",
+        "status": "incomplete"
+      },
+      "task2": {
+        "title": "Finish project",
+        "description": "React app for assignment",
+        "status": "complete"
+      }
+    }
+  },
+  "eastvirginiaa@gmail.com": {
+    "password": "Qwerty12345@",
+    "email": "1234356",
+    "tasks": {}
+  },
+  "username": {
+    "password": "password",
+    "email": "emailid",
+    "tasks": {}
+  }
+}
