@@ -3,7 +3,7 @@ const fs = require("fs/promises");
 const path = require("path");
 
 const router = express.Router();
-const DATA = path.join(__dirname, '..','db','users.json');
+const DATA = process.env.DATA_PATH || './data/users.json';
 
 router.get('/tasks', async (req, res) => {
     const id = req.query.userId;
