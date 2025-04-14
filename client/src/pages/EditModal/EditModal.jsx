@@ -39,7 +39,7 @@ function EditModal({userId, taskId, taskData, onClose, fetchTasks}){
         status: status
       }
       console.log("Saving", updatedTask);
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/tasks/update`, {
+      const res = await fetch(`https://finzarc-task-app.onrender.com/api/tasks/update`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedTask),

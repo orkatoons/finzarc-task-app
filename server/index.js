@@ -5,7 +5,7 @@ const taskRoutes = require("./routes/tasks");
 
 const app = express();
 app.use(cors({
-  origin: process.env.FRONTEND_ORIGIN || "*", // change "*" to your frontend URL if deploying
+  origin: "https://finzarc-task-app-git-main-orkatoons-projects.vercel.app",
   credentials: true,
 }));
 
