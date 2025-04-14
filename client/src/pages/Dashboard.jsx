@@ -18,7 +18,7 @@ function Dashboard() {
 
     const fetchTasks = async () => {
         try {
-            const res = await fetch(`http://localhost:5000/api/tasks?userId=${user.id}`);
+            const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/tasks?userId=${user.id}`);
             const data = await res.json();
             console.log(data);
             setTasks(data || {}); // Add this line to update state
@@ -40,7 +40,7 @@ function Dashboard() {
         const editTasks = async (taskToEditId) => {
             try{
                 console.log("Sending for editing",taskToEditId);
-                const res = await fetch(`http://localhost:5000/api/tasks/edit?userId=${userId}&taskId=${taskToEditId}`);
+                const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/tasks/edit?userId=${userId}&taskId=${taskToEditId}`);
                 const data = await res.json();
                 console.log("editing",data.taskId, data.taskData);
                 setTaskData(data.taskData);
@@ -56,7 +56,7 @@ function Dashboard() {
         const createNewTask = async (e) => {
             try{
                 
-                const res = await fetch('http://localhost:5000/api/tasks/create', {
+                const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/tasks/create`, {
                     method:'POST',
                     headers: {
                         'Content-Type':'application/json',
