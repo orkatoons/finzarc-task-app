@@ -1,62 +1,88 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../App.css';
 
-
-
+// Login.jsx
 function Login() {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        
-        try{
+        if (!id || !password) {
+            setError('Both fields are required!');
+            return;
+        }
+
+        try {
             const res = await fetch('http://localhost:5000/api/login', {
-                method:'POST',
-                headers: {
-                    'Content-Type':'application/json',
-                },
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ id, password }),
-                })
-            
+            });
+
             const data = await res.json();
 
             if (res.status === 200) {
-                console.log("Login Successful");
                 localStorage.setItem('user', JSON.stringify({ id }));
                 navigate('/dashboard');
-              } else if (res.status === 404) {
-                alert("User Not Found ❌");
-              } else {
-                alert("Login failed 🚫");
-                console.error(data);
-              }
-            
-        }
-        catch (err) {
+            } else if (res.status === 404) {
+                setError('User Not Found ❌');
+            } else {
+                setError(data.message || 'Login failed 🚫');
+            }
+        } catch (err) {
+            setError('Network error - try again later');
             console.error('Fetch error:', err);
-            alert("Something went wrong :/");
-          }
-      };
+        }
+    };
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                Username: <input name="Username" value={id} onChange={(e) => setId(e.target.value)}/>
-                <br></br>
-                Password: <input type="password" name="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                <br></br>
-                <button type='submit'>Login</button>
-            </form>
-            Don't Have an Account? 
-            <Link to='/register'>Click Here</Link>
-            
-        </div>
-    )
-};
+        <div className="auth-container">
+            <form onSubmit={handleSubmit} className="auth-form">
+                <h2 className="auth-title">Login</h2>
+                
+                <div className="input-group">
+                    <label>Username:</label>
+                    <input 
+                        name="Username" 
+                        value={id} 
+                        onChange={(e) => {
+                            setId(e.target.value);
+                            setError('');
+                        }}
+                        className="auth-input"
+                    />
+                </div>
 
+                <div className="input-group">
+                    <label>Password:</label>
+                    <input 
+                        type="password" 
+                        name="Password" 
+                        value={password} 
+                        onChange={(e) => {
+                            setPassword(e.target.value);
+                            setError('');
+                        }}
+                        className="auth-input"
+                    />
+                </div>
+
+                {error && <div className="error-message">{error}</div>}
+
+                <button type='submit' className="auth-button">Login</button>
+
+                <div className="auth-footer">
+                    Don't Have an Account? 
+                    <Link to='/register' className="auth-link">Click Here</Link>
+                </div>
+            </form>
+        </div>
+    );
+}
 export default Login;
 

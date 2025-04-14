@@ -1,54 +1,26 @@
 {
   "ayush": {
-    "password": "abc123",
-    "email": "ayush@email.com",
+    "password": "12345678",
+    "email": "ayushmadan.caffeine@gmail.com",
     "tasks": {
       "1": {
-        "title": "Buy groceries",
-        "description": "Get milk and eggs",
-        "status": "incomplete"
+        "title": "Welcome Note",
+        "description": "This is my submission for the position of Full-Stack Developer at Finzarc.\nI've designed the UI to be intuitive & simple for users to navigate through. The primary source of inspiration for the design is Google Keep.\n\n",
+        "status": "incomplete",
+        "lastModified": "2025-04-14T16:22:17.223Z"
       },
       "2": {
-        "title": "Finish project",
-        "description": "React app for assignment",
-        "status": "complete"
+        "title": "Features Included",
+        "description": "-- Completed Login and Signup page with styling\n---- Added validations in login for - user not found\n---- Added validations in registration for - invalid email format, \n     minimum password length, minimum username length\n-- Security Validations; user cannot access dashboard without \n   logging in\n-- Tasks can be created using plus button on bottom right\n-- All existing tasks can be edited\n-- Tasks are saved in the following ways -\n---- Clicking Done while editing a task\n---- Using debouncing (1 second after a user stops typing)\n---- Whenever the task status is changed between pending and \n     complete\n---- When a user clicks outside the modal, data is autosaved\n-- Notes also sync to the dashboard from modal every time a save \n   occurs.",
+        "status": "complete",
+        "lastModified": "2025-04-14T16:22:36.481Z"
+      },
+      "3": {
+        "title": "Features to be included",
+        "description": "Unfortunately due to lack of time and some preplanned personal commitments I was unable to add the delete feature.\n\nHere is a list of all other features I was planning on adding given the time -\n-- User can drag and reorder tasks in a grid format\n-- User can add deadlines to tasks\n-- User can add labels to each note\n-- OAuth Login option using flow ",
+        "status": "incomplete",
+        "lastModified": "2025-04-14T16:24:58.841Z"
       }
     }
-  },
-  "eastvirginiaa@gmail.com": {
-    "password": "Qwerty12345@",
-    "email": "1234356",
-    "tasks": {
-      "4": {
-        "title": "easy does it",
-        "description": "comeonnn",
-        "lastModified": "2025-04-14T14:40:09.422Z"
-      },
-      "5": {
-        "title": "we got this man",
-        "description": "lesgoooo",
-        "lastModified": "2025-04-14T14:40:23.436Z"
-      },
-      "6": {
-        "title": "task6",
-        "description": "almost there",
-        "status": "incomplete",
-        "lastModified": "2025-04-14T14:41:27.148Z"
-      },
-      "7": {
-        "title": "making task 7",
-        "description": "okay looks like it's working",
-        "status": "incomplete",
-        "lastModified": "2025-04-14T14:44:19.894Z"
-      },
-      "title": "hahaahah ",
-      "description": "helloooo",
-      "lastModified": "2025-04-14T14:38:56.377Z"
-    }
-  },
-  "username": {
-    "password": "password",
-    "email": "emailid",
-    "tasks": {}
   }
 }

@@ -2,6 +2,8 @@ import React ,{useEffect, useState} from "react";
 import { useNavigate } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import EditModal from "./EditModal/EditModal.jsx";
+import './Dashboard.css';
+import FinzarcLogo from '../assets/finzarc_logo.jpg';
 
 function Dashboard() {
     const navigate = useNavigate();
@@ -12,24 +14,27 @@ function Dashboard() {
     const [showModal, setModal] = useState(false);
     const [taskId, setTaskId] = useState('');
     const [taskData, setTaskData] = useState(null);
+    const [tasks, setTasks] = useState([]);
 
-    useEffect(() => {
-        const fetchTasks = async () => {
-            try{
-                const res = await fetch(`http://localhost:5000/api/tasks?userId=${user.id}`);
-
+    const fetchTasks = async () => {
+        try {
+            const res = await fetch(`http://localhost:5000/api/tasks?userId=${user.id}`);
             const data = await res.json();
             console.log(data);
-            }
-            catch (err) {
-                console.error('Fetch error:', err);
-                alert("Something went wrong :/");
-              }
-            }
+            setTasks(data || {}); // Add this line to update state
+        }
+        catch (err) {
+            console.error('Fetch error:', err);
+            alert("Something went wrong :/");
+        }
+    }
 
-        if (user) 
-            {fetchTasks();}
-        },);
+
+    useEffect(() => {
+        if (user) {
+            fetchTasks();
+        }
+    }, [user?.id]); 
 
 
         const editTasks = async (taskToEditId) => {
@@ -39,6 +44,7 @@ function Dashboard() {
                 const data = await res.json();
                 console.log("editing",data.taskId, data.taskData);
                 setTaskData(data.taskData);
+                setTaskId(taskToEditId);
                 setModal(true);
             }
             catch (err) {
@@ -73,38 +79,64 @@ function Dashboard() {
               }
         };
 
-
-    
-
     const handleLogout = async (e) => {
         e.preventDefault();
         localStorage.clear();
         navigate('/');
-
     }
 
     return (
-        <div>
-           <h1>Welcome to your dashboard {user.id} </h1>
-           <br>
-           </br>
-           <button type="submit" onClick={createNewTask}>+</button>
-           <br>
-           </br>
-           
-           <button type="submit" onClick={handleLogout}>Logout</button>
-           {showModal && (
-    <EditModal
-        userId={userId}
-        taskId={taskId}
-        taskData={taskData} // You can even pass empty {} for now
-        onClose={() => setModal(false)}
-    />
-)}
+        <div className="dashboard-container">
+             <div className="logo-container">
+                <img src={FinzarcLogo} alt="Finzarc Logo" className="logo-image" />
+            </div>
+          <header className="dashboard-header">
+            <h1 className="welcome-message">Welcome to the Finzarc Task Manager App {user.id.split('@')[0]}!</h1>
+            <button className="logout-button" onClick={handleLogout}>Logout</button>
+          </header>
+      
+          <div className="tasks-grid">
+            {Object.entries(tasks).map(([taskId, task]) => (
+              <div 
+                key={taskId} 
+                className="task-card"
+                onClick={() => editTasks(taskId)}
+              >
+                <h3>{task.title || 'Untitled Task'}</h3>
+                <p className="task-description">
+                  {task.description || 'No description'}
+                </p>
+                <div className="task-footer">
+                  <span className={`task-status ${task.status === 'complete' ? 'completed' : 'pending'}`}>
+                    {task.status === 'complete' ? '✓ Completed' : '◯ Pending'}
+                  </span>
+                  <span className="task-modified">
+                    {new Date(task.lastModified).toLocaleDateString()}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+      
+          <button 
+            className="new-task-button"
+            onClick={createNewTask}
+            aria-label="Add new task"
+          >
+            <span className="plus-icon">+</span>
+          </button>
+      
+          {showModal && (
+            <EditModal
+              userId={userId}
+              taskId={taskId}
+              taskData={taskData}
+              onClose={() => setModal(false)}
+              fetchTasks={fetchTasks}
+            />
+          )}
         </div>
-
-
-    )
-};
+      );
+    }
 
 export default Dashboard;

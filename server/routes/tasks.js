@@ -51,8 +51,8 @@ router.post('/tasks/create', async (req, res) => {
         const generateTaskId = (Object.keys(usertasks).length + 1).toString();
 
         const newTask = {
-            title: "Title Goes Here",
-            description: "Text Goes Here",
+            title: "Untitled",
+            description: "Description...",
             status: "incomplete",
             lastModified: Date.now()
         };
@@ -105,6 +105,7 @@ router.post('/tasks/update', async (req, res) => {
     try{
         const {userId, taskId, title, description, lastModified, status} = req.body;
         const id = userId;
+        console.log(req.body);
 
         if(!id){
             return res.status(400).json({"error":"Missing user ID"});
