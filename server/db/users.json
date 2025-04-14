@@ -3,12 +3,12 @@
     "password": "abc123",
     "email": "ayush@email.com",
     "tasks": {
-      "task1": {
+      "1": {
         "title": "Buy groceries",
         "description": "Get milk and eggs",
         "status": "incomplete"
       },
-      "task2": {
+      "2": {
         "title": "Finish project",
         "description": "React app for assignment",
         "status": "complete"
@@ -18,7 +18,33 @@
   "eastvirginiaa@gmail.com": {
     "password": "Qwerty12345@",
     "email": "1234356",
-    "tasks": {}
+    "tasks": {
+      "4": {
+        "title": "easy does it",
+        "description": "comeonnn",
+        "lastModified": "2025-04-14T14:40:09.422Z"
+      },
+      "5": {
+        "title": "we got this man",
+        "description": "lesgoooo",
+        "lastModified": "2025-04-14T14:40:23.436Z"
+      },
+      "6": {
+        "title": "task6",
+        "description": "almost there",
+        "status": "incomplete",
+        "lastModified": "2025-04-14T14:41:27.148Z"
+      },
+      "7": {
+        "title": "making task 7",
+        "description": "okay looks like it's working",
+        "status": "incomplete",
+        "lastModified": "2025-04-14T14:44:19.894Z"
+      },
+      "title": "hahaahah ",
+      "description": "helloooo",
+      "lastModified": "2025-04-14T14:38:56.377Z"
+    }
   },
   "username": {
     "password": "password",
