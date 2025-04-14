@@ -3,7 +3,7 @@ const fs = require("fs/promises");
 const path = require("path");
 
 const router = express.Router();
-const DATA = process.env.DATA_PATH || './data/users.json';
+const DATA = path.join(__dirname, '..','db','users.json');
 
 //Simple Login & Register logic
 router.post('/register', async (req, res) => {
