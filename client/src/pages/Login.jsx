@@ -43,7 +43,7 @@ function Login() {
     return (
         <div className="auth-container">
             <form onSubmit={handleSubmit} className="auth-form">
-                <h2 className="auth-title">Finzarc Task Manager Login</h2>
+                <h2 className="auth-title">Task Manager Login</h2>
                 
                 <div className="input-group">
                     <label>Username:</label>
@@ -80,7 +80,7 @@ function Login() {
                     Don't Have an Account? 
                     <Link to='/register' className="auth-link">Click Here</Link>
                     <br></br>
-                    <p style={{ color: 'red' }}>Quick & Dirty Prototype</p>
+                    <p style={{ color: 'red' }}>Quick & Dirty Prototype by Ayush</p>
                 </div>
             </form>
         </div>

@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import EditModal from "./EditModal/EditModal.jsx";
 import './Dashboard.css';
 import FinzarcLogo from '../assets/finzarc_logo.jpg';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 function Dashboard() {
     const navigate = useNavigate();
@@ -91,7 +92,7 @@ function Dashboard() {
                 <img src={FinzarcLogo} alt="Finzarc Logo" className="logo-image" />
             </div>
           <header className="dashboard-header">
-            <h1 className="welcome-message">Welcome to the Finzarc Task Manager App {user.id.split('@')[0]}!</h1>
+            <h1 className="welcome-message">Welcome to the Task Manager App {user.id.split('@')[0]}!</h1>
             <button className="logout-button" onClick={handleLogout}>Logout</button>
           </header>
       
